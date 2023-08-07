@@ -1,0 +1,43 @@
+<!-- recommend.html -->
+<form method="post">
+    {% csrf_token %}
+    <label for="rows">Number of Rows:</label>
+    <input type="number" id="rows" name="rows">
+    <label for="data_structure">Query Type:</label>
+    <select id="data_structure" name="data_structure">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+    </select>
+    <label for="data_file">Select Server:</label>
+    <select id="server" name="server">
+        <option value="averages_server1.json">S1</option>
+        <option value="averages_server2.json">S2</option>
+        <option value="averages_server3.json">S3</option>
+        <option value="averages_server4.json">S4</option>
+        <option value="averages_server5.json">S5</option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+<head>
+    <title>Recommendation Results</title>
+</head>
+<body>
+    <h1>Top Recommended Databases</h1>
+    <pre>{{ top_databases }}</pre> <!-- Output the content of top_databases directly -->
+    <p>Query Information: {{ query_info }}</p>
+</body>
+{% if top_databases %}
+<h2>Top Databases:</h2>
+{% for db, insertion_time, query_time in top_databases %}
+<p>{{ db }}</p>
+<p>Insertion Time: {{ insertion_time }}</p>
+<p>Query Time: {{ query_time }}</p>
+{% endfor %}
+<h2>Query Information:</h2>
+<p>{{ query_info }}</p>
+{% endif %}
