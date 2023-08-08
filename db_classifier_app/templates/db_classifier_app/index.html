@@ -1,68 +1,40 @@
-<!-- index.html -->
-
 {% extends 'db_classifier_app/base_generic.html' %}
 
 {% block content %}
-<h1 class="text-center mb-4">Database Recommendation</h1>
-<div class="card mx-auto" style="width: 30rem;">
-    <div class="card-body">
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="rows">Number of Rows:</label>
-                <input type="text" id="rows" name="rows" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="data_structure">Query Type:</label>
-                <select id="data_structure" name="data_structure" class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Select Server:</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="server" id="server1" value="averages_server1.json">
-                    <label class="form-check-label" for="server1">S1</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="server" id="server2" value="averages_server2.json">
-                    <label class="form-check-label" for="server2">S2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="server" id="server3" value="averages_server3.json">
-                    <label class="form-check-label" for="server3">S3</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="server" id="server4" value="averages_server4.json">
-                    <label class="form-check-label" for="server4">S4</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="server" id="server5" value="averages_server5.json">
-                    <label class="form-check-label" for="server5">S5</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+    <h1>Database Recommender</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="rows">Number of Rows:</label>
+    <input type="number" id="rows" name="rows" value="{{ rows }}" required>
+
+<select id="data_structure" name="data_structure" required>
+    <option value="1" {% if data_structure == "1" %}selected{% endif %}>1. Join Intensive: 2 - Compute Intensive: 1 - Search Intensive: 3</option>
+    <option value="2" {% if data_structure == "2" %}selected{% endif %}>2. Join Intensive: 1 - Compute Intensive: 3 - Search Intensive: 1</option>
+    <option value="3" {% if data_structure == "3" %}selected{% endif %}>3. Join Intensive: 1 - Compute Intensive: 1 - Search Intensive: 5</option>
+    <option value="4" {% if data_structure == "4" %}selected{% endif %}>4. Join Intensive: 1 - Compute Intensive: 1 - Search Intensive: 4</option>
+    <option value="5" {% if data_structure == "5" %}selected{% endif %}>5. Join Intensive: 1 - Compute Intensive: 4 - Search Intensive: 1</option>
+    <option value="6" {% if data_structure == "6" %}selected{% endif %}>6. Join Intensive: 4 - Compute Intensive: 3 - Search Intensive: 1</option>
+    <option value="7" {% if data_structure == "7" %}selected{% endif %}>7. Join Intensive: 5 - Compute Intensive: 3 - Search Intensive: 1</option>
+</select>
+
+<div class="radio-group">
+    {% for s in "12345" %}
+        <label>
+            <input type="radio" name="server" value="averages_server{{ s }}.json" {% if server == "averages_server"|add:s|add:".json" %}checked{% endif %} required>S{{ s }}
+        </label>
+    {% endfor %}
 </div>
-{% if top_databases %}
-<div class="card mx-auto mt-4" style="width: 30rem;">
-    <div class="card-body">
-        <h2 class="card-title">Top Databases:</h2>
-        <div class="card-text">
-            {% for db, insertion_time, query_time in top_databases %}
-            <p>{{ db }}</p>
-            <p>Insertion Time: {{ insertion_time }}</p>
-            <p>Query Time: {{ query_time }}</p>
-            {% endfor %}
+        <div class = "submit-button">
+            <input type="submit" value="Submit" >
         </div>
+    </form>
+<div style="text-align:center; display: {% if not top_databases %}none{% endif %};" class="results">
+        {% if top_databases %}
+            {% for db, insertion_time, query_time in top_databases %}
+                <p><span class ="bigger"><b>{{ forloop.counter }}. {{ db }}</b></span></p>
+                <p><b>Insertion Time</b>: {{ insertion_time }}</p>
+                <p><b>Query Time</b>: {{ query_time }}</p>
+            {% endfor %}
+        {% endif %}
     </div>
-</div>
-{% endif %}
 {% endblock %}

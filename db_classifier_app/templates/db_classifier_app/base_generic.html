@@ -1,14 +1,71 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>DB Classifier</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Database Time Simulator</title>
+    <link rel="stylesheet" href="{% static 'db_classifier_app/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Manrope:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    {% block content %}{% endblock %}
+    <div id="content">
+    <div id = "main-container" class = "main-container">
+        <div class="post-it">
+          <p class="sticky taped">
+            <strong>Simulator Description</strong><br>
+            Simulating the insertion and<br>
+            querying time across different databases<br>
+            hosted on different server configurations<br>
+            and using different query structures<br>
+          </p>
+        </div>
+    <div id="mainframe" class="mainframe">
+        <!-- Toolbar -->
+
+
+        <!-- Main content -->
+        <div class="container">
+
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+        <div class="post-it">
+
+        <div class = "parallel-post">
+          <p class="note">
+            <strong>Query Type</strong><br>
+            The query type represents the<br>
+            type of queries you're most likely to perform<br>
+            It is characterized by the compute, join, and search<br>
+            intesiveness(on a scale from 1-5).<br>
+          </p>
+                      <p class="sticky taped">
+            <strong>Server Configuration</strong><br>
+            S1: 64GB Ram - 32 CPU Cores - 100GB SSD<br>
+            S2: 32 Ram - 16 CPU Cores - 100GB SSD<br>
+            S3: 16GB Ram - 8 CPU Cores - 100GB SSD<br>
+            S4: 8GB Ram - 4 CPU Cores - 100GB SSD<br>
+                          S5: 4GB Ram - 2 CPU Cores - 100GB SSD<br>
+          </p>
+
+            </div>
+        </div>
+</div>
 </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const results = document.querySelector('.results');
+        const container = document.querySelector('.container');
+
+        if (results && results.style.display === 'none') {
+            container.classList.add('container-short');
+        } else {
+            container.classList.remove('container-short');
+        }
+    });
+</script>
+
 </html>
