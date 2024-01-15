@@ -1,18 +1,89 @@
-body {
-    background-color: #2c2c2c;
-    color: #FFFFFF;
-    font-family: 'Helvetica';
+html {
+  height: 100%;
+}
+#content{
+    background-color: transparent;
+    background-image:       linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+  height:100%;
+  background-size:50px 50px;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+    background-color: #434343;
+    background-image:linear-gradient(#434343, #282828);
+    color: whitesmoke;
+font-family: 'Comfortaa', cursive;
+font-family: 'Manrope', sans-serif;
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+.mainframe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh; /* Full height */
+    position: relative;
+}
+
+
 .container {
-    width: 800px;
-    height: 600px;
-    margin: 0 auto;
+    width: 50%; /* Change as needed */
+    height: 90%; /* Change as needed */
     background-color: #5c5c5c;
     border-radius: 10px;
     padding: 30px;
     box-sizing: border-box;
+    left: 50%;
 }
+.container-short {
+    height: 400px; /* Adjust this value to your liking */
+}
+
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: flex-end;*/
+    align-items: flex-end;
+    width: 50%; /* Should be the same as .container */
+    background-color: #444;
+    color: white;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    border: none;
+}
+.toolbar h1 {
+    margin: 0;
+}
+
+.toolbar-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.toolbar-buttons button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 
 h1 {
     text-align: center;
@@ -49,14 +120,156 @@ input[type=submit]:hover {
     margin-bottom: 30px;
 }
 
+
+
 .radio-group label {
     color: white;
     cursor: pointer;
 }
 
 .results {
-    height: 200px;
+    height: 50%;
     overflow-y: scroll;
     margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #2c2c2c;
 }
 
+.submit-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 2%;
+
+}
+
+.bigger {
+    font-size: larger;
+    text-align: center;
+}
+
+/* Media Queries for Dynamic adjustments */
+@media screen and (max-width: 800px) {
+    .container {
+        width: 60%;
+        height: 90%;
+    }
+    .toolbar {
+        width: 60%;
+    }
+}
+/* Media Queries for Dynamic adjustments */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 50%;
+        height: 90%;
+    }
+    .toolbar {
+        width: 50%;
+    }
+}
+/* Media Queries for Dynamic adjustments */
+@media screen and (max-width: 1400px) {
+    .container {
+        width: 40%;
+        height: 90%;
+    }
+    .toolbar {
+        width: 40%;
+    }
+}
+/* post-it note */
+
+@import url(https://fonts.googleapis.com/css?family=Give+You+Glory|The+Girl+Next+Door|Gloria+Hallelujah|Indie+Flower);
+
+
+.sticky {
+    transform: rotate(-5deg);
+  -webkit-box-shadow: #DDD 0px 1px 2px;
+  position: relative;
+  background-color: #F4F39E;
+  border-color: #DEE184;
+  color: #47576B;
+  text-align: center;
+  margin: 2.5em 0px;
+  padding: 1.5em 1em;
+  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  font-family: 'Indie Flower', cursive;
+  font-family: 'Give You Glory', cursive;
+  font-family: 'The Girl Next Door', cursive;
+  font-family: 'Gloria Hallelujah', cursive;
+    width: 350px;
+}
+.parallel-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.post-it {
+  display: table;
+  margin: 2em 1em 1em;
+  width: 30%;
+    height: 100%;
+}
+.taped {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.sticky.taped:after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 30px;
+  top: -21px;
+  left: 30%;
+  border: 1px solid #fff;
+  background: rgba(254, 254, 254, .6);
+  -webkit-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+  box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+}
+
+.note {
+-webkit-box-shadow: #DDD 0px 1px 2px;
+  position: relative;
+  background-color: #F4F39E;
+  border-color: #DEE184;
+  text-align: center;
+  margin: 1.5em -7em 5em;
+  padding: 1.5em 1em;
+  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  width: 250px;
+  font-family: 'The Girl Next Door', cursive; /*originally with brain flower font*/
+  font-size: 1em;
+    color: #47576B;
+
+}
+.note:after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 30px;
+  top: -21px;
+  left: 30%;
+  border: 1px solid #fff;
+  background: rgba(254, 254, 254, .6);
+  -webkit-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+  box-shadow: 0px 0 3px rgba(0,0,0,0.1);
+}
